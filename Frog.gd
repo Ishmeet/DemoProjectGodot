@@ -57,10 +57,11 @@ func _on_death_body_entered(body):
 
 func _on_player_damage_body_entered(body):
 	if body.name == "Player-CharacterBody2D":
-		body.health -= 1
 		body.velocity.y = -200
 		body.velocity.x = body.velocity.x * 200
+		body.health -= 1
 		player_animation = body.get_node("AnimatedSprite2D")
 		player_animation.play("Hurt")
 		await player_animation.animation_finished
+		
 		
