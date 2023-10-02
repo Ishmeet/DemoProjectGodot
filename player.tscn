@@ -101,8 +101,20 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k022a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a73me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k022a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a73me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k022a")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt",
 "speed": 8.0
 }, {
@@ -155,7 +167,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player-CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_dsb6e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -167,10 +179,14 @@ one_way_collision_margin = 0.0
 position = Vector2(-3.8147e-06, -1)
 scale = Vector2(1.45199, 1.465)
 sprite_frames = SubResource("SpriteFrames_c4dxw")
-animation = &"Crouch"
-frame_progress = 0.124233
+animation = &"Hurt"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, -22)
+position = Vector2(1, -31)
 offset = Vector2(2.08165e-12, 2.08165e-12)
 zoom = Vector2(2.8, 2.8)
+limit_left = -100
+limit_top = -100
+limit_bottom = 312500
+position_smoothing_speed = 3.0
+rotation_smoothing_speed = 2.0
