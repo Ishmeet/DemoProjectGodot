@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -31,15 +31,22 @@ func _physics_process(delta):
 		player_animation.flip_h = true
 	elif direction == 1:
 		player_animation.flip_h = false
+
+	# Get the input down and up direction and handle the movement/deceleration.
+	var crouch = Input.get_axis("ui_down", "ui_up")
+	if crouch == -1:
+		player_animation.play("Crouch")
+		velocity.x = (direction * SPEED)/2
 	
-	if direction:
-		velocity.x = direction * SPEED
-		if velocity.y == 0:
-			player_animation.play("Run")
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if velocity.y == 0:
-			player_animation.play("Idle")
+	if crouch == 0:
+		if direction:
+			velocity.x = direction * SPEED
+			if velocity.y == 0:
+				player_animation.play("Run")
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			if velocity.y == 0:
+				player_animation.play("Idle")
 
 	if velocity.y > 0:
 		player_animation.play("Fall")
